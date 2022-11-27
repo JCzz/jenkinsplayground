@@ -26,8 +26,28 @@ pipeline {
       }
     }
 
+    stage('List pods') {
+    withKubeConfig([credentialsId: 'mykubeconfig',
+                    serverUrl: 'https://192.168.64.2:6443'
+                    ]) {
+      sh 'kubectl get pods'
+    }
+  }
 
-  
+/*
+    stage('Deploy App to Kubernetes') {     
+      steps {
+        container('kubectl') {
+          withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
+            sh 'sed -i "s/<TAG>/${BUILD_NUMBER}/" myweb.yaml'
+            sh 'kubectl apply -f myweb.yaml'
+          }
+        }
+      }
+    }
+*/
+
+
   }
   
 }
