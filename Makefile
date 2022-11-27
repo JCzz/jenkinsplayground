@@ -26,3 +26,15 @@ logs:
 	kubectl -n devops-tools logs -f jenkins-5498fbb866-qp9l4  -c jenkins
 watch:
 	kubectl get pods -n devops-tools --watch	
+
+build_kubectl:
+
+# jenkins-admin
+
+# Kubectl - arm64
+# <https://github.com/rancher/kubectl>
+
+
+# docker build --platform arm64 --build-arg ARCH=arm64 --tag awear/kubectl .
+# docker push awear/kubectl
+
