@@ -6,6 +6,7 @@ spec:
   containers:
   - name: kubectl
     image: rancher/kubectl:v1.23.7-arm64
+    imagePullPolicy: Always
     command:
     - /bin/cat
     tty: true    
