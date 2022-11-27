@@ -11,7 +11,6 @@ pipeline {
   }
 
   stages {
-    /*
 
     stage('Kaniko Build & Push Image') {
       steps {
@@ -26,19 +25,7 @@ pipeline {
         }
       }
     }
-    
-    */
-    // 'https://192.168.64.2:6443'
 
-  stage('Apply Kubernetes files') {
-    steps {
-      withKubeConfig([credentialsId: 'mykubeconfig', serverUrl: 'https://192.168.64.2:6443']) {
-        sh 'kubectl get pods'
-      }
-    }
-  }
-
-/*
     stage('Deploy App to Kubernetes') {     
       steps {
         container('kubectl') {
@@ -49,9 +36,6 @@ pipeline {
         }
       }
     }
-*/
-
-
-  }
   
+  }
 }
