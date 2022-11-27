@@ -4,13 +4,6 @@ metadata:
   name: kaniko
 spec:
   containers:
-  - name: kubectl
-    image: rancher/kubectl:v1.23.7-arm64
-    imagePullPolicy: Always
-    serviceAccount: jenkins-admin
-    command:
-    - /bin/cat
-    tty: true    
   - name: kaniko
     image: gcr.io/kaniko-project/executor:debug
     command:
