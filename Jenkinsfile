@@ -27,11 +27,13 @@ pipeline {
     }
 
     stage('List pods') {
-    withKubeConfig([credentialsId: 'mykubeconfig',
-                    serverUrl: 'https://192.168.64.2:6443'
-                    ]) {
-      sh 'kubectl get pods'
-    }
+      steps {
+        withKubeConfig([credentialsId: 'mykubeconfig',
+                        serverUrl: 'https://192.168.64.2:6443'
+                        ]) {
+          sh 'kubectl get pods'
+        }
+      }
   }
 
 /*
