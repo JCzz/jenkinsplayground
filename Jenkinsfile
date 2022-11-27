@@ -1,48 +1,41 @@
 pipeline {
-  agent any
-  stages {
-    stage('go-build') {
-      parallel {
-        stage('go-build') {
-          steps {
-            echo 'hello world'
-          }
-        }
 
-        stage('') {
-          steps {
-            echo 'hello 2'
-          }
-        }
-
-      }
-    }
-
-    stage('go-test') {
-      parallel {
-        stage('go-test') {
-          steps {
-            echo 'hello test'
-          }
-        }
-
-        stage('') {
-          steps {
-            echo 'hello tes'
-          }
-        }
-
-      }
-    }
-
-    stage('') {
-      steps {
-        echo 'hello end'
-      }
-    }
-
+  options {
+    ansiColor('xterm')
   }
-  environment {
-    text = 'value'
+
+  agent {
+    kubernetes {
+      yamlFile 'builder.yaml'
+    }
+  }
+
+  stages {
+
+    stage('Kaniko Build & Push Image') {
+      steps {
+        container('kaniko') {
+          script {
+            sh '''
+            /kaniko/executor --dockerfile `pwd`/Dockerfile \
+                             --context `pwd` \
+                             --destination=awear/jenkinsplayground:${BUILD_NUMBER}
+            '''
+          }
+        }
+      }
+    }
+
+    stage('Deploy App to Kubernetes') {     
+      steps {
+        container('kubectl') {
+          withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
+            sh 'sed -i "s/<TAG>/${BUILD_NUMBER}/" myweb.yaml'
+            sh 'kubectl apply -f myweb.yaml'
+          }
+        }
+      }
+    }
+  
   }
 }
