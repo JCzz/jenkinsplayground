@@ -23,7 +23,7 @@ spec:
         app: myweb
     spec:
       containers:
-      - image: awear/jenkinsplayground:24
+      - image: awear/jenkinsplayground:<TAG>
         imagePullPolicy: Always
         name: myweb
 
