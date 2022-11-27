@@ -25,15 +25,13 @@ pipeline {
         }
       }
     }
+    
+    // 'https://192.168.64.2:6443'
 
-    stage('List pods') {
-      steps {
-        withKubeConfig([credentialsId: 'mykubeconfig',
-                        serverUrl: 'https://192.168.64.2:6443'
-                        ]) {
-          sh 'kubectl get pods'
-        }
-      }
+  stage('Apply Kubernetes files') {
+    withKubeConfig([credentialsId: 'user1', serverUrl: 'https://192.168.64.2:6443']) {
+      sh 'kubectl apply -f my-kubernetes-directory'
+    }
   }
 
 /*
