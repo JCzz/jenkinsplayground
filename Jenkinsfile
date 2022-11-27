@@ -26,6 +26,7 @@ pipeline {
       }
     }
 
+  /*
     stage('Deploy App to Kubernetes') {     
       steps {
         container('kubectl') {
@@ -36,6 +37,7 @@ pipeline {
         }
       }
     }
+    */
   
   }
 }
