@@ -21,3 +21,8 @@ network:
 builder:
 # platforms="linux/arm64"
 # docker buildx create --name awear-builder --platform $platforms --driver-opt=network=host
+
+logs:
+	kubectl -n devops-tools logs -f jenkins-5498fbb866-qp9l4  -c jenkins
+watch:
+	kubectl get pods -n devops-tools --watch	
