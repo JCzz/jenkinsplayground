@@ -7,6 +7,9 @@ spec:
   - name: kubectl
     image: arm64v8/alpine
     imagePullPolicy: Always
+    command:
+    - /bin/cat
+    tty: true    
   - name: kaniko
     image: gcr.io/kaniko-project/executor:debug
     command:
