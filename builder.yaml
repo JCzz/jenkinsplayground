@@ -5,7 +5,7 @@ metadata:
 spec:
   containers:
   - name: kubectl
-    image: rancher/kubectl:v1.23.7-arm64
+    image: arm64v8/alpine
     imagePullPolicy: Always
   - name: kaniko
     image: gcr.io/kaniko-project/executor:debug
