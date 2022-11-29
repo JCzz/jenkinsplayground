@@ -45,7 +45,7 @@ pipeline {
           withKubeConfig([credentialsId: 'mykubeconfig']) {
             sh 'apk update'
             sh 'apk upgrade'
-            sh 'apk add -U curl'
+            sh 'apk add --no-cache curl'
             sh 'curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/arm64/kubectl"'
             sh 'chmod u+x ./kubectl'
             sh 'sed -i "s/<TAG>/${BUILD_NUMBER}/" myweb.yaml'
