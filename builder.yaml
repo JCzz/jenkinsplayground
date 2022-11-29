@@ -5,7 +5,7 @@ metadata:
 spec:
   containers:
   - name: kubectl
-    image: arm64v8/alpine
+    image: awear/kubectl
     imagePullPolicy: Always
     command:
     - /bin/cat
