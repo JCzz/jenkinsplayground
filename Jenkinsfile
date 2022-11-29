@@ -43,7 +43,6 @@ pipeline {
       steps {
         container('kubectl') {
           withKubeConfig([credentialsId: 'mykubeconfig']) {
-            sudo dpkg --configure -a
             sh 'apk update'
             sh 'apk upgrade'
             sh 'apk add -U curl'
